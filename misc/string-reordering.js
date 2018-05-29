@@ -22,4 +22,11 @@ function sentence(List) {
     .join(' ');
 }
 
+// function sentence(List) {
+//   return List.sort((a, b) => Object.keys(a) - Object.keys(b))
+//     .reduce((acc, curr, index) => {
+//       return acc + `${Object.values(curr)[0]} `;
+//     }, '').trim();
+// }
+
 module.exports = sentence;

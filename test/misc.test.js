@@ -1,9 +1,9 @@
 var assert = require('assert');
 var sentence = require('../misc/string-reordering.js');
-console.log(sentence);
+
 describe('Miscellaneous', function() {
   describe('String Re-ordering', function() {
-    let validCase1 = [
+    const validCase1 = [
       { '4': 'dog' },
       { '2': 'took' },
       { '3': 'his' },
@@ -12,7 +12,7 @@ describe('Miscellaneous', function() {
       { '6': 'a' },
       { '12': 'spin' }
     ];
-    let validCase2 = [
+    const validCase2 = [
       { '-998': 'took' },
       { '999': 'spin' },
       { '3': 'dog' },
