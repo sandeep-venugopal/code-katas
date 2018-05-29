@@ -1,0 +1,13 @@
+{
+  "extends": ["airbnb", "prettier"],
+  "rules": {
+    "no-var": "warn",
+    "prefer-const": [
+      "warn",
+      {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
+      }
+    ]
+  }
+}

@@ -13,32 +13,18 @@
  *
  */
 function bucketize(list) {
-  const counts = list.reduce((acc, curr) => {
+  // eslint-disable-next-line no-console
+  console.log('Inside Bucketize');
+  let counts = list.reduce((acc, curr) => {
     acc[curr] = (acc[curr] || 0) + 1;
     return acc;
   }, {});
-  let buckets = new Array(list.length + 1).fill(null);
-  for (let key in counts) {
+  const buckets = new Array(list.length + 1).fill(null);
+  Object.keys(counts).forEach(key => {
     const value = counts[key];
     (buckets[value] = buckets[value] || []).push(Number(key));
-  }
+  });
   return buckets;
-} 
-
-// function bucketize(list) {
-//   let numCountMap = {};
-//   let countNumMap = {};
-//   let result = [null];
-//   list.forEach(num => {
-//     numCountMap[num] = numCountMap[num] || 1;
-//   });
-//   for (let key of Object.keys(numCountMap)) {
-//     (countNumMap[numCountMap[key]] = countNumMap[numCountMap[key]] || []).push(Number(key));
-//   }
-//   for (let i = 1; i <= list.length; i++) {
-//     result.push(countNumMap[i] || null);
-//   }
-//   return result;
-// }
+}
 
 module.exports = bucketize;

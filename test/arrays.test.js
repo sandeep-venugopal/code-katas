@@ -21,20 +21,7 @@ describe('Arrays', function() {
 
     it('should return the bucketized analysis of the input list CASE2', function() {
       const inputList2 = [0, 1, 2, 3, 4, 4, 5, 5, 5, 0, 0];
-      const output = [
-        null,
-        [1, 2, 3],
-        [4],
-        [0, 5],
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ];
+      const output = [null, [1, 2, 3], [4], [0, 5], null, null, null, null, null, null, null, null];
       const result = buketize(inputList2);
       for (let i = 0; i < result.length; i++) {
         if (result[i]) {
