@@ -1,6 +1,7 @@
 var assert = require('assert');
 var buketize = require('../arrays/frequency-analysis.js');
-var minSum = require('../arrays/warmup.js');
+var minSum = require('../arrays/min-sum.js');
+var twoSum = require('../arrays/two-sum.js');
 
 describe('Arrays', function() {
   describe('Frequency Analysis', function() {
@@ -55,6 +56,26 @@ describe('Arrays', function() {
       const arr = [5, 4, 2, 3];
       const result = minSum(arr);
       assert.equal(result, 22);
+    });
+  });
+
+  describe('twoSum', function() {
+    it('should return all possible integer pairs that sum upto given S: CASE1', function() {
+      const numbers = [3, 5, 2, -4, 8, 11];
+      const S = 7;
+      const result = twoSum(numbers, S);
+      result.map(numbers => numbers.sort());
+      assert.equal(result.length, 2);
+      assert.equal(result[0][0], 2);
+      assert.equal(result[0][1], 5);
+      assert.equal(result[1][0], -4);
+      assert.equal(result[1][1], 11);
+    });
+    it('should return all possible integer pairs that sum upto given S: CASE2', function() {
+      const numbers = [2, 2, 3];
+      const S = 4;
+      const result = twoSum(numbers, S);
+      assert.equal(result.length, 1);
     });
   });
 });

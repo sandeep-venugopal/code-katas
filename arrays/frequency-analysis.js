@@ -14,7 +14,7 @@
  */
 function bucketize(list) {
   // eslint-disable-next-line no-console
-  console.log('Inside Bucketize');
+  // console.log('Inside Bucketize');
   let counts = list.reduce((acc, curr) => {
     acc[curr] = (acc[curr] || 0) + 1;
     return acc;
