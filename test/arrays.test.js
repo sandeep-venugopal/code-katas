@@ -2,6 +2,7 @@ var assert = require('assert');
 var buketize = require('../arrays/frequency-analysis.js');
 var minSum = require('../arrays/min-sum.js');
 var twoSum = require('../arrays/two-sum.js');
+var trotter = require('../arrays/bleatrix-trotter.js');
 
 describe('Arrays', function() {
   describe('Frequency Analysis', function() {
@@ -76,6 +77,17 @@ describe('Arrays', function() {
       const S = 4;
       const result = twoSum(numbers, S);
       assert.equal(result.length, 1);
+    });
+  });
+
+  describe('Bleatrix Trotter', function() {
+    it('should return the last number that trotter sees before asleep: CASE1', function() {
+      const result = trotter(1692);
+      assert.equal(result, 5076);
+    });
+    it('should return "INSOMNIA" if counting continues forever: CASE2', function() {
+      const result = trotter(0);
+      assert.equal(result, 'INSOMNIA');
     });
   });
 });
