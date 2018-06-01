@@ -3,6 +3,7 @@ var buketize = require('../arrays/frequency-analysis.js');
 var minSum = require('../arrays/min-sum.js');
 var twoSum = require('../arrays/two-sum.js');
 var trotter = require('../arrays/bleatrix-trotter.js');
+var highestRank = require('../arrays/highest-rank.js');
 
 describe('Arrays', function() {
   describe('Frequency Analysis', function() {
@@ -88,6 +89,20 @@ describe('Arrays', function() {
     it('should return "INSOMNIA" if counting continues forever: CASE2', function() {
       const result = trotter(0);
       assert.equal(result, 'INSOMNIA');
+    });
+  });
+
+  describe('Highest Rank Number', function() {
+    it('should return the highest rank number: CASE1', function() {
+      const List = [12, 10, 8, 12, 7, 6, 4, 10, 12];
+      const result = highestRank(List);
+      assert.equal(result, 12);
+    });
+
+    it('should return the highest rank number: CASE1', function() {
+      const List = [90, 100, 100, 8, 90, 7, 6, 4, 100, 90];
+      const result = highestRank(List);
+      assert.equal(result, 100);
     });
   });
 });
