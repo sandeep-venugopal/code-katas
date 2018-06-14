@@ -26,11 +26,9 @@ function trotter(num) {
   let digitsSeen = {};
   while (Object.keys(digitsSeen).length < 10) {
     term += num;
-    String(term)
-      .split('')
-      .forEach(digit => {
-        digitsSeen[digit] = true;
-      });
+    [...String(term)].forEach(digit => {
+      digitsSeen[digit] = true;
+    });
   }
   return term;
 }
