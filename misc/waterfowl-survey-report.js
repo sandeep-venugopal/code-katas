@@ -33,61 +33,42 @@
  */
 function createWaterFowlSurveyReport(ducksList) {
   const isLabradorDuck = ducksList.some(duck => {
-    const res = duck.split(' ').filter(item => {
-      return item;
-    });
+    const res = duck.replace(/\s+/g, ' ').split(' ');
     return (
       (res.length === 2 && res[0] === 'Labrador-Duck') ||
       (res.length === 3 && res[0] === 'Labrador' && res[1] === 'Duck')
     );
   });
   if (isLabradorDuck) return ['Disqualified data'];
-  let report = [];
-  let ducksCount = {};
-  ducksList.forEach(duck => {
-    const res = processReport(duck);
+  const ducksCount = ducksList.reduce((acc, curr) => {
+    const res = processReport(curr);
     const code = res.split(' ')[0];
     const count = Number(res.split(' ')[1]);
-    if (ducksCount[code]) {
-      ducksCount[code] += count;
-    } else {
-      ducksCount[code] = count;
-    }
-  });
-  Object.keys(ducksCount)
+    acc[code] = acc[code] ? acc[code] + count : count;
+    return acc;
+  }, {});
+  return Object.keys(ducksCount)
     .sort()
-    .forEach(key => {
-      report.push(key);
-      report.push(ducksCount[key]);
-    });
-  return report;
+    .reduce((acc, curr) => acc.concat(curr, ducksCount[curr]), []);
+}
 
-  function processReport(duck) {
-    let result = '';
-    const res = duck.split(' ').filter(item => {
-      return item;
-    });
-    const count = res.splice(res.length - 1, 1);
-    let pr = res
-      .reduce((acc, curr) => {
-        const r = curr.split('-');
-        if (r.length >= 2) {
-          acc = [].concat(acc, r);
-        } else {
-          acc.push(curr);
-        }
-        return acc;
-      }, [])
-      .map(item => item.toUpperCase());
-    if (pr.length === 1) {
-      return `${pr[0].substr(0, 6)} ${count}`;
-    } else if (pr.length === 2) {
-      return `${pr[0].substr(0, 3)}${pr[1].substr(0, 3)} ${count}`;
-    } else if (pr.length === 3) {
-      return `${pr[0].substr(0, 2)}${pr[1].substr(0, 2)}${pr[2].substr(0, 2)} ${count}`;
-    } else if (pr.length === 4) {
-      return `${pr[0].substr(0, 1)}${pr[1].substr(0, 1)}${pr[2].substr(0, 2)}${pr[3].substr(0, 2)} ${count}`;
-    }
+function processReport(duck) {
+  const nameParts = duck.replace(/\s+/g, ' ').split(' ');
+  const count = nameParts.splice(nameParts.length - 1, 1);
+  let pr = nameParts
+    .reduce((acc, curr) => {
+      const r = curr.split('-');
+      return r.length >= 2 ? [].concat(acc, r) : [].concat(acc, curr);
+    }, [])
+    .map(item => item.toUpperCase());
+  if (pr.length === 1) {
+    return `${pr[0].substr(0, 6)} ${count}`;
+  } else if (pr.length === 2) {
+    return `${pr[0].substr(0, 3)}${pr[1].substr(0, 3)} ${count}`;
+  } else if (pr.length === 3) {
+    return `${pr[0].substr(0, 2)}${pr[1].substr(0, 2)}${pr[2].substr(0, 2)} ${count}`;
+  } else if (pr.length === 4) {
+    return `${pr[0].substr(0, 1)}${pr[1].substr(0, 1)}${pr[2].substr(0, 2)}${pr[3].substr(0, 2)} ${count}`;
   }
 }
 
