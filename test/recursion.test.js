@@ -2,6 +2,7 @@ var assert = require('assert');
 var deepCount = require('../recursion/array-deepcount.js');
 var max = require('../recursion/madmax.js');
 var deepFreezeHelper = require('../recursion/deep-freeze-helper.js');
+var digitalRoot = require('../recursion/digital-root.js');
 
 describe('Recursion', function() {
   describe('Array - Deep Count', function() {
@@ -55,6 +56,16 @@ describe('Recursion', function() {
       } catch (e) {
         assert.notEqual(testObj[3][0].length, 2);
       }
+    });
+  });
+  describe('Digital Root', function() {
+    it('should give digital root for the given number', function() {
+      const result = digitalRoot(16);
+      assert.equal(result, 7);
+    });
+    it('should give digital root for the given number:CASE2', function() {
+      const result = digitalRoot(942);
+      assert.equal(result, 6);
     });
   });
 });
