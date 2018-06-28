@@ -27,48 +27,59 @@
  * Answer = 3 + 5 + 4 + 2 + 7 + 7 + 6 + 2 = 36
  */
 function tvRemote(word) {
-  let currCor = '0,0';
-  const coordinates = buildCoordinates();
-  return word.split('').reduce((acc, curr) => {
-    const destArray = coordinates[curr].split(',').map(item => Number(item));
-    const cArray = currCor.split(',').map(item => Number(item));
-    const [destRow, destCol] = destArray;
-    const [currRow, currCol] = cArray;
-    const colDiff = destCol - currCol;
-    const rowDiff = destRow - currRow;
-    if (colDiff > 0) {
-      acc += colDiff;
-      cArray[1] += colDiff;
-    } else if (colDiff < 0) {
-      cArray[1] += colDiff;
-      acc += -1 * colDiff;
-    }
-    if (rowDiff > 0) {
-      acc += rowDiff;
-      cArray[0] += rowDiff;
-    } else if (rowDiff < 0) {
-      cArray[0] += rowDiff;
-      acc += -1 * rowDiff;
-    }
-    acc += 1;
-    currCor = cArray.join(',');
-    return acc;
-  }, 0);
+  const keyboard = [
+    ['a', 'b', 'c', 'd', 'e', '1', '2', '3'],
+    ['f', 'g', 'h', 'i', 'j', '4', '5', '6'],
+    ['k', 'l', 'm', 'n', 'o', '7', '8', '9'],
+    ['p', 'q', 'r', 's', 't', '.', '@', '0'],
+    ['u', 'v', 'w', 'x', 'y', 'z', '_', '/']
+  ];
+  let moves = 0;
+  let currPos = { row: 0, col: 0 };
+  let getPos = letter => {
+    const row = keyboard.findIndex(r => r.find(char => char === letter));
+    const col = keyboard[row].findIndex(char => char === letter);
+    return { row, col };
+  };
+  word.split('').forEach(letter => {
+    const newPos = getPos(letter);
+    moves += Math.abs(newPos.row - currPos.row) + Math.abs(newPos.col - currPos.col) + 1;
+    currPos.row = newPos.row;
+    currPos.col = newPos.col;
+  });
+  return moves;
 }
 
-function buildCoordinates() {
-  const row0 = ['a', 'b', 'c', 'd', 'e', '1', '2', '3'];
-  const row1 = ['f', 'g', 'h', 'i', 'j', '4', '5', '6'];
-  const row2 = ['k', 'l', 'm', 'n', 'o', '7', '8', '9'];
-  const row3 = ['p', 'q', 'r', 's', 't', '.', '@', '0'];
-  const row4 = ['u', 'v', 'w', 'x', 'y', 'z', '_', '/'];
-  const layout = [row0, row1, row2, row3, row4];
-  return layout.reduce((acc, curr, i) => {
-    curr.forEach((char, j) => {
-      acc[char] = `${i},${j}`;
-    });
-    return acc;
-  }, {});
-}
+// function tvRemote(word) {
+//   let currCor = '0,0';
+//   const coordinates = buildCoordinates();
+//   return word.split('').reduce((acc, curr) => {
+//     const destArray = coordinates[curr].split(',').map(item => Number(item));
+//     const cArray = currCor.split(',').map(item => Number(item));
+//     const [destRow, destCol] = destArray;
+//     const [currRow, currCol] = cArray;
+//     const colDiff = destCol - currCol;
+//     const rowDiff = destRow - currRow;
+//     acc += Math.abs(destRow - currRow) + Math.abs(destCol - currCol) + 1;
+//     currCor = `${cArray[0] + rowDiff}, ${cArray[1] + colDiff}`;
+//     return acc;
+//   }, 0);
+// }
+
+// function buildCoordinates() {
+//   const keyboard = [
+//     ['a', 'b', 'c', 'd', 'e', '1', '2', '3'],
+//     ['f', 'g', 'h', 'i', 'j', '4', '5', '6'],
+//     ['k', 'l', 'm', 'n', 'o', '7', '8', '9'],
+//     ['p', 'q', 'r', 's', 't', '.', '@', '0'],
+//     ['u', 'v', 'w', 'x', 'y', 'z', '_', '/']
+//   ];
+//   return keyboard.reduce((acc, curr, i) => {
+//     curr.forEach((char, j) => {
+//       acc[char] = `${i},${j}`;
+//     });
+//     return acc;
+//   }, {});
+// }
 
 module.exports = tvRemote;
