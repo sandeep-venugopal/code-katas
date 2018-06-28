@@ -1,6 +1,7 @@
 var assert = require('assert');
 var sentence = require('../misc/string-reordering.js');
 var createWaterfowlSurveyReport = require('../misc/waterfowl-survey-report.js');
+var tvRemote = require('../misc/tv-remote.js');
 
 describe('Miscellaneous', function() {
   describe('String Re-ordering', function() {
@@ -73,6 +74,17 @@ describe('Miscellaneous', function() {
       assert.equal(result[5], 25);
       assert.equal(result[8], 'SMEW');
       assert.equal(result[9], 4);
+    });
+  });
+  describe('Tv Remote', function() {
+    it('should return the correct number of moves required type the given word: CASE1', function() {
+      const moves = tvRemote('codewars');
+      assert.equal(moves, 36);
+    });
+
+    it('should return the noof moves required to type the given word: CASE2', function() {
+      const moves = tvRemote('aaabbbccc');
+      assert.equal(moves, 11);
     });
   });
 });
