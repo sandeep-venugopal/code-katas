@@ -1,4 +1,4 @@
-function isPalindrome(S) {
+export default function isPalindrome(S) {
   const I = S.replace(/[^\w]/gi, '')
     .toLowerCase()
     .split('');

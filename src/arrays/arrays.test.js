@@ -1,9 +1,9 @@
-var assert = require('assert');
-var buketize = require('../arrays/frequency-analysis.js');
-var minSum = require('../arrays/min-sum.js');
-var twoSum = require('../arrays/two-sum.js');
-var trotter = require('../arrays/bleatrix-trotter.js');
-var highestRank = require('../arrays/highest-rank.js');
+import buketize from '../arrays/frequency-analysis.js';
+import minSum from '../arrays/min-sum.js';
+import twoSum from '../arrays/two-sum.js';
+import trotter from '../arrays/bleatrix-trotter.js';
+import highestRank from '../arrays/highest-rank.js';
+import highestRankS2 from '../arrays/highest-rank-s2.js';
 
 describe('Arrays', function() {
   describe('Frequency Analysis', function() {
@@ -14,10 +14,10 @@ describe('Arrays', function() {
       for (let i = 0; i < result.length; i++) {
         if (result[i]) {
           for (let j = 0; j < result[i]; j++) {
-            assert.equal(result[i][j], output[i][j]);
+            expect(result[i][j]).toBe(output[i][j]);
           }
         } else {
-          assert.equal(result[i], null);
+          expect(result[i]).toBeNull();
         }
       }
     });
@@ -29,10 +29,10 @@ describe('Arrays', function() {
       for (let i = 0; i < result.length; i++) {
         if (result[i]) {
           for (let j = 0; j < result[i]; j++) {
-            assert.equal(result[i][j], output[i][j]);
+            expect(result[i][j]).toBe(output[i][j]);
           }
         } else {
-          assert.equal(result[i], null);
+          expect(result[i]).toBeNull();
         }
       }
     });
@@ -44,10 +44,10 @@ describe('Arrays', function() {
       for (let i = 0; i < result.length; i++) {
         if (result[i]) {
           for (let j = 0; j < result[i]; j++) {
-            assert.equal(result[i][j], output[i][j]);
+            expect(result[i][j]).toBe(output[i][j]);
           }
         } else {
-          assert.equal(result[i], null);
+          expect(result[i]).toBeNull();
         }
       }
     });
@@ -57,7 +57,7 @@ describe('Arrays', function() {
     it('should return the bucketized analysis of the input list', function() {
       const arr = [5, 4, 2, 3];
       const result = minSum(arr);
-      assert.equal(result, 22);
+      expect(result).toBe(22);
     });
   });
 
@@ -67,28 +67,28 @@ describe('Arrays', function() {
       const S = 7;
       const result = twoSum(numbers, S);
       result.map(numbers => numbers.sort());
-      assert.equal(result.length, 2);
-      assert.equal(result[0][0], 2);
-      assert.equal(result[0][1], 5);
-      assert.equal(result[1][0], -4);
-      assert.equal(result[1][1], 11);
+      expect(result.length).toBe(2);
+      expect(result[0][0]).toBe(2);
+      expect(result[0][1]).toBe(5);
+      expect(result[1][0]).toBe(-4);
+      expect(result[1][1]).toBe(11);
     });
     it('should return all possible integer pairs that sum upto given S: CASE2', function() {
       const numbers = [2, 2, 3];
       const S = 4;
       const result = twoSum(numbers, S);
-      assert.equal(result.length, 1);
+      expect(result.length).toBe(1);
     });
   });
 
   describe('Bleatrix Trotter', function() {
     it('should return the last number that trotter sees before asleep: CASE1', function() {
       const result = trotter(1692);
-      assert.equal(result, 5076);
+      expect(result).toBe(5076);
     });
     it('should return "INSOMNIA" if counting continues forever: CASE2', function() {
       const result = trotter(0);
-      assert.equal(result, 'INSOMNIA');
+      expect(result).toBe('INSOMNIA');
     });
   });
 
@@ -96,13 +96,27 @@ describe('Arrays', function() {
     it('should return the highest rank number: CASE1', function() {
       const List = [12, 10, 8, 12, 7, 6, 4, 10, 12];
       const result = highestRank(List);
-      assert.equal(result, 12);
+      expect(result).toBe(12);
     });
 
     it('should return the highest rank number: CASE1', function() {
       const List = [90, 100, 100, 8, 90, 7, 6, 4, 100, 90];
       const result = highestRank(List);
-      assert.equal(result, 100);
+      expect(result).toBe(100);
+    });
+  });
+
+  describe('Highest Rank Number- Solution 2', function() {
+    it('should return the highest rank number: CASE1', function() {
+      const List = [12, 10, 8, 12, 7, 6, 4, 10, 12];
+      const result = highestRankS2(List);
+      expect(result).toBe(12);
+    });
+
+    it('should return the highest rank number: CASE1', function() {
+      const List = [90, 100, 100, 8, 90, 7, 6, 4, 100, 90];
+      const result = highestRankS2(List);
+      expect(result).toBe(100);
     });
   });
 });

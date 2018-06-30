@@ -1,24 +1,23 @@
-var assert = require('assert');
-var deepCount = require('../recursion/array-deepcount.js');
-var max = require('../recursion/madmax.js');
-var deepFreezeHelper = require('../recursion/deep-freeze-helper.js');
-var digitalRoot = require('../recursion/digital-root.js');
+import deepCount from '../recursion/array-deepcount.js';
+import madMax from '../recursion/madmax.js';
+import deepFreezeHelper from '../recursion/deep-freeze-helper.js';
+import digitalRoot from '../recursion/digital-root.js';
 
 describe('Recursion', function() {
   describe('Array - Deep Count', function() {
     it('should return the count of ALL elements in the array', function() {
       const inputList1 = [1, 2, [3, 4, [5], null, undefined]];
       const result = deepCount(inputList1);
-      assert.equal(result, 9);
+      expect(result).toBe(9);
     });
   });
   describe('MadMax - max', function() {
     it('should return -Infinity for empty array', function() {
-      assert.equal(max([]), -Infinity);
+      expect(madMax([])).toBe(-Infinity);
     });
 
     it('should return the max number for given array of numbers', function() {
-      assert.equal(max([99, 2, 100, 4, 5]), 100);
+      expect(madMax([99, 2, 100, 4, 5])).toBe(100);
     });
   });
   describe('Object - Deep Freeze', function() {
@@ -32,12 +31,15 @@ describe('Recursion', function() {
         profile: { age: 31, occupation: 'Software Enginner', address: { line1: '#555 6th stage' } }
       };
       deepFreezeHelper(testObj);
-      testObj.profile.age = 27;
-      assert.notEqual(testObj.profile.age, 27);
+      try {
+        testObj.profile.age = 27;
+      } catch (e) {
+        expect(testObj.profile.age).not.toBe(27);
+      }
       try {
         testObj.degrees[3].higher.ms.push('Wireless');
       } catch (e) {
-        assert.notEqual(testObj.degrees[3].higher.ms.length, 2);
+        expect(testObj.degrees[3].higher.ms.length).not.toBe(2);
       }
     });
     it('should recursively apply freeze to objects: NestedArray', function() {
@@ -49,23 +51,26 @@ describe('Recursion', function() {
         { higher: { ms: ['Strutures'], phd: ['Bio'] } }
       ];
       deepFreezeHelper(testObj);
-      testObj[3][0][0].product = 'Laptop';
-      assert.notEqual(testObj[3][0][0].product, 'Laptop');
+      try {
+        testObj[3][0][0].product = 'Laptop';
+      } catch (e) {
+        expect(testObj[3][0][0].product).not.toBe('Laptop');
+      }
       try {
         testObj[3][0].push('Wireless');
       } catch (e) {
-        assert.notEqual(testObj[3][0].length, 2);
+        expect(testObj[3][0].length).not.toBe(2);
       }
     });
   });
   describe('Digital Root', function() {
     it('should give digital root for the given number', function() {
       const result = digitalRoot(16);
-      assert.equal(result, 7);
+      expect(result).toBe(7);
     });
     it('should give digital root for the given number:CASE2', function() {
       const result = digitalRoot(942);
-      assert.equal(result, 6);
+      expect(result).toBe(6);
     });
   });
 });

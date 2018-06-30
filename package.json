@@ -7,7 +7,8 @@
     "lint": "eslint '**/*.{js,jsx}' --quiet",
     "precommit": "lint-staged",
     "format": "prettier --write '**/*.{js,jsx}'",
-    "test": "mocha"
+    "test": "jest",
+    "codecov": "codecov"
   },
   "lint-staged": {
     "*.{js,jsx,json}": [
@@ -19,13 +20,19 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-jest": "^23.2.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "codecov": "^3.0.2",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jest": "^21.17.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.8.2",
     "husky": "^0.14.3",
+    "jest": "^23.2.0",
     "lint-staged": "^7.1.2",
     "mocha": "^5.2.0",
     "prettier": "^1.13.2"

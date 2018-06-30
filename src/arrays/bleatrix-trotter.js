@@ -18,7 +18,7 @@
  *
  * Google CodeJam 2016
  */
-function trotter(num) {
+export default function trotter(num) {
   if (num === 0) {
     return 'INSOMNIA';
   }
@@ -32,5 +32,3 @@ function trotter(num) {
   }
   return term;
 }
-
-module.exports = trotter;

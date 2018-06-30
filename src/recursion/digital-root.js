@@ -18,7 +18,7 @@
  * => 6
  *
  */
-function digitalRoot(n) {
+export default function digitalRoot(n) {
   let sum = n
     .toString()
     .split('')
@@ -29,5 +29,3 @@ function digitalRoot(n) {
 // function digitalRoot(n) {
 //   return ((n - 1) % 9) + 1;
 // }
-
-module.exports = digitalRoot;

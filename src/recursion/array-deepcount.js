@@ -10,8 +10,6 @@
  *
  * The input will always be an array.
  */
-function deepCount(a) {
+export default function deepCount(a) {
   return a.reduce((acc, curr) => acc + (Array.isArray(curr) ? deepCount(curr) : 0), a.length);
 }
-
-module.exports = deepCount;

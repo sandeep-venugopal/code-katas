@@ -5,7 +5,7 @@
  * because 11 + -4 = 7 and 2 + 5 = 7.
  * [-4, 2, 3, 5, 8, 11]
  */
-function twoSum(numbers, S) {
+export default function twoSum(numbers, S) {
   let result = [];
   for (let i = 0; i < numbers.length; i += 1) {
     const secondIndex = numbers.indexOf(S - numbers[i], i + 1);

@@ -11,7 +11,7 @@
 //     return acc + curr * o[o.length - 1 - index];
 //    }, 0) / 2;
 //  }
-function minSum(arr) {
+export default function minSum(arr) {
   const sortedArray = arr.sort((a, b) => a - b);
   let sum = 0;
   while (sortedArray.length) {
@@ -19,5 +19,3 @@ function minSum(arr) {
   }
   return sum;
 }
-
-module.exports = minSum;

@@ -31,20 +31,15 @@
  *  - If a name has three words, take the first two letters of each word.
  *  - If a name has four words, take the first letters from the first two words, and the first two letters from the last two words.
  */
-function createWaterFowlSurveyReport(ducksList) {
-  const isLabradorDuck = ducksList.some(duck => {
-    const res = duck.replace(/\s+/g, ' ').split(' ');
-    return (
-      (res.length === 2 && res[0] === 'Labrador-Duck') ||
-      (res.length === 3 && res[0] === 'Labrador' && res[1] === 'Duck')
-    );
-  });
-  if (isLabradorDuck) return ['Disqualified data'];
+export default function createWaterFowlSurveyReport(ducksList) {
+  if (ducksList.some(duck => /^Labrador Duck/.test(duck))) {
+    return ['Disqualified data'];
+  }
   const ducksCount = ducksList.reduce((acc, curr) => {
     const res = processReport(curr);
     const code = res.split(' ')[0];
     const count = Number(res.split(' ')[1]);
-    acc[code] = acc[code] ? acc[code] + count : count;
+    acc = ((acc[code] = (acc[code] || 0) + count), acc);
     return acc;
   }, {});
   return Object.keys(ducksCount)
@@ -72,4 +67,21 @@ function processReport(duck) {
   }
 }
 
-module.exports = createWaterFowlSurveyReport;
+// const sixLetterCode = bird =>
+//   bird
+//     .split(/[ -]/)
+//     .slice(0, 4)
+//     .map((word, i, words) => word.slice(0, ~~(6 / words.length) + (i >= words.length - (6 % words.length))))
+//     .join('')
+//     .toUpperCase();
+// function createWaterFowlSurveyReport(sightings) {
+//   if (sightings.some(s => /^Labrador Duck/.test(s))) return ['Disqualified data'];
+//   let counter = sightings
+//     .map(sighting => sighting.match(/^(.*?) +(\d+)$/).slice(1))
+//     .map(([name, count]) => [sixLetterCode(name), +count])
+//     .reduce((counter, [code, count]) => ((counter[code] = (counter[code] || 0) + count), counter), {});
+//   return Object.keys(counter)
+//     .map(key => [key, counter[key]])
+//     .sort(([code1, _1], [code2, _2]) => code1.localeCompare(code2))
+//     .reduce((result, [code, count]) => (result.push(code, count), result), []);
+// }

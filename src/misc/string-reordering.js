@@ -16,7 +16,7 @@
  * 'Vatsan took his dog for a spin'
  *
  */
-function sentence(List) {
+export default function sentence(List) {
   return List.sort((a, b) => Object.keys(a) - Object.keys(b))
     .map(obj => obj[+Object.keys(obj)])
     .join(' ');
@@ -28,5 +28,3 @@ function sentence(List) {
 //       return acc + `${Object.values(curr)[0]} `;
 //     }, '').trim();
 // }
-
-module.exports = sentence;

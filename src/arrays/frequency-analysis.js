@@ -12,7 +12,7 @@
  * the expected output should be: [null, [1,2,3], [4], [5], null, null, null, null, null].
  *
  */
-function bucketize(list) {
+export default function bucketize(list) {
   // eslint-disable-next-line no-console
   // console.log('Inside Bucketize');
   let counts = list.reduce((acc, curr) => {
@@ -26,5 +26,3 @@ function bucketize(list) {
   });
   return buckets;
 }
-
-module.exports = bucketize;

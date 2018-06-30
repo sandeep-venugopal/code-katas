@@ -13,9 +13,8 @@
  *
  * friendFind(['blue','blue','red','red','blue','green','chipmunk'])  // should return 1
  */
-function friendFind(line) {
+export default function friendFind(line) {
   if (line.length <= 2) {
     return 0;
   }
 }
-module.exports = friendFind;

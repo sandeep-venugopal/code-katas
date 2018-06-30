@@ -5,7 +5,7 @@
  * The freeze operation should prevent objects from being modified.
  *
  */
-function deepFreezeHelper(object) {
+export default function deepFreezeHelper(object) {
   Object.deepFreeze = function recursiveDeepFreeze(obj) {
     Object.freeze(obj);
     Object.keys(obj).forEach(key => {
@@ -33,5 +33,3 @@ function deepFreezeHelper(object) {
 //     });
 //   }
 // };
-
-module.exports = deepFreezeHelper;
