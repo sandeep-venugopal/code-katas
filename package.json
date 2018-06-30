@@ -8,6 +8,7 @@
     "precommit": "lint-staged",
     "format": "prettier --write '**/*.{js,jsx}'",
     "test": "jest",
+    "ci": "npm run lint && npm run test -- --coverage",
     "codecov": "codecov"
   },
   "lint-staged": {
