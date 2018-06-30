@@ -56,15 +56,17 @@ function processReport(duck) {
       return r.length >= 2 ? [].concat(acc, r) : [].concat(acc, curr);
     }, [])
     .map(item => item.toUpperCase());
+  let report = '';
   if (pr.length === 1) {
-    return `${pr[0].substr(0, 6)} ${count}`;
+    report = `${pr[0].substr(0, 6)} ${count}`;
   } else if (pr.length === 2) {
-    return `${pr[0].substr(0, 3)}${pr[1].substr(0, 3)} ${count}`;
+    report = `${pr[0].substr(0, 3)}${pr[1].substr(0, 3)} ${count}`;
   } else if (pr.length === 3) {
-    return `${pr[0].substr(0, 2)}${pr[1].substr(0, 2)}${pr[2].substr(0, 2)} ${count}`;
+    report = `${pr[0].substr(0, 2)}${pr[1].substr(0, 2)}${pr[2].substr(0, 2)} ${count}`;
   } else if (pr.length === 4) {
-    return `${pr[0].substr(0, 1)}${pr[1].substr(0, 1)}${pr[2].substr(0, 2)}${pr[3].substr(0, 2)} ${count}`;
+    report = `${pr[0].substr(0, 1)}${pr[1].substr(0, 1)}${pr[2].substr(0, 2)}${pr[3].substr(0, 2)} ${count}`;
   }
+  return report;
 }
 
 // const sixLetterCode = bird =>

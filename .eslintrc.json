@@ -1,7 +1,11 @@
 {
+  "root": true,
   "extends": ["airbnb", "prettier"],
+  "plugins": ["jest", "json"],
   "rules": {
     "no-var": "warn",
+    "no-param-reassign": "warn",
+    "no-use-before-define": ["error", { "functions": false, "classes": false }],
     "prefer-const": [
       "warn",
       {

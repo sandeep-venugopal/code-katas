@@ -7,4 +7,4 @@
  * For example: [1,2,3,4,5] for 2 beggars will return a result of [9,6], as the first one takes [1,3,5], the second collects [2,4].
  *
  */
-function englishBeggars() {}
+export default function englishBeggars() {}

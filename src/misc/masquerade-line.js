@@ -17,4 +17,5 @@ export default function friendFind(line) {
   if (line.length <= 2) {
     return 0;
   }
+  return 0;
 }
