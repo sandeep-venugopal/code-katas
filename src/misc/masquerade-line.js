@@ -14,8 +14,15 @@
  * friendFind(['blue','blue','red','red','blue','green','chipmunk'])  // should return 1
  */
 export default function friendFind(line) {
-  if (line.length <= 2) {
-    return 0;
-  }
-  return 0;
+  let count = 0;
+  line.forEach((curr, i) => {
+    if (
+      (curr === 'red' && line[i + 1] === 'blue' && line[i + 2] === 'blue') ||
+      (curr === 'red' && line[i - 1] === 'blue' && line[i + 1] === 'blue') ||
+      (curr === 'red' && line[i - 1] === 'blue' && line[i - 2] === 'blue')
+    ) {
+      count += 1;
+    }
+  });
+  return count;
 }

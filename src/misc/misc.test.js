@@ -2,6 +2,7 @@ import sentence from '../misc/string-reordering';
 import createWaterfowlSurveyReport from '../misc/waterfowl-survey-report';
 import tvRemote from '../misc/tv-remote.js';
 import tvRemoteS2 from '../misc/tv-remote-s2.js';
+import friendFind from '../misc/masquerade-line.js';
 
 describe('Miscellaneous', function() {
   describe('String Re-ordering', function() {
@@ -96,6 +97,32 @@ describe('Miscellaneous', function() {
     it('should return the noof moves required to type the given word: CASE2', function() {
       const moves = tvRemote('aaabbbccc');
       expect(moves).toBe(11);
+    });
+  });
+  describe('Masquerade Line', function() {
+    it('should return the number of people who could possibly your friend: STD CASE 1', function() {
+      const result = friendFind(['blue', 'blue', 'red', 'red', 'blue', 'green']);
+      expect(result).toBe(1);
+    });
+
+    it('should return the number of people who could possibly your friend: STD CASE 2', function() {
+      const result = friendFind(['green', 'blue', 'red', 'blue', 'blue', 'green']);
+      expect(result).toBe(1);
+    });
+
+    it('should return the number of people who could possibly your friend: STD CASE 3', function() {
+      const result = friendFind(['green', 'red', 'red', 'blue', 'red', 'blue']);
+      expect(result).toBe(1);
+    });
+
+    it('should return the number of people who could possibly your friend: ZERO ', function() {
+      const result = friendFind(['brown', 'brown', 'red', 'green']);
+      expect(result).toBe(0);
+    });
+
+    it('should return the number of people who could possibly your friend: ALL ', function() {
+      const result = friendFind(['blue', 'red', 'blue', 'blue', 'red', 'blue', 'red']);
+      expect(result).toBe(2);
     });
   });
 });
